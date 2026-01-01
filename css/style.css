@@ -126,7 +126,8 @@ body {
   text-shadow: 1px 1px 3px rgba(141, 103, 66, 0.5);
   mix-blend-mode: difference;
 }
-.hero .content .cta {
+.hero .content .cta,
+.marketplace-redirect .cta {
   margin-top: 1rem;
   display: inline-block;
   padding: 1rem 3rem;
@@ -211,42 +212,17 @@ body {
 .contact .row {
   display: flex;
   margin-top: 2rem;
-  background-color: #222;
+  background-color: transparent;
+  justify-content: center;
 }
 .contact .row .maps {
-  flex: 1 1 45rem;
+  flex: 1 1 100%;
   width: 100%;
   object-fit: cover;
+  height: 40rem; /* Increased height for better visibility */
+  border-radius: 1rem; /* Rounded corners for the map */
 }
-.contact .row form {
-  flex: 1 1 45rem;
-  padding: 5rem 2rem;
-  text-align: center;
-}
-.contact .row form .input-group {
-  display: flex;
-  align-items: center;
-  margin-top: 2rem;
-  background-color: var(--bg);
-  border: 1px solid #eee;
-  padding-left: 2rem;
-}
-.contact .row form .input-group input {
-  width: 100%;
-  padding: 2rem;
-  font-size: 1.7rem;
-  background: none;
-  color: #fff;
-}
-.contact .row form .btn {
-  margin-top: 3rem;
-  display: inline-block;
-  padding: 1rem 3rem;
-  font-size: 1.7rem;
-  color: #fff;
-  background-color: var(--primary);
-  cursor: pointer;
-}
+
 
 /* Footer */
 footer {
