@@ -48,6 +48,56 @@ const productContainer = document.getElementById("product-container");
 const categoryFilter = document.getElementById("category-filter");
 const priceFilter = document.getElementById("price-filter");
 const priceValue = document.getElementById("price-value");
+const cartCountElement = document.getElementById("cart-count");
+
+// Initialize Cart from LocalStorage
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Update Cart Count UI
+function updateCartCount() {
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+  cartCountElement.textContent = totalItems;
+}
+
+// Add to Cart Function
+function addToCart(productId) {
+  const product = products.find((p) => p.id === productId);
+  if (!product) return;
+
+  const existingItem = cart.find((item) => item.id === productId);
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({ ...product, quantity: 1 });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+  
+  // Show notification
+  showNotification(`${product.name} berhasil ditambahkan ke keranjang!`);
+}
+
+// Show Notification Function
+function showNotification(message) {
+  // Check if notification element exists, if not create it
+  let notification = document.querySelector(".notification-toast");
+  if (!notification) {
+    notification = document.createElement("div");
+    notification.classList.add("notification-toast");
+    document.body.appendChild(notification);
+  }
+
+  // Set message and show
+  notification.textContent = message;
+  notification.classList.add("show");
+
+  // Hide after 3 seconds
+  setTimeout(() => {
+    notification.classList.remove("show");
+  }, 3000);
+}
 
 // Format Currency
 const formatRupiah = (number) => {
@@ -75,7 +125,7 @@ function renderProducts(productsToRender) {
       <img src="${product.image}" alt="${product.name}">
       <h3>${product.name}</h3>
       <p class="price">${formatRupiah(product.price)}</p>
-      <button>Tambah ke Keranjang</button>
+      <button onclick="addToCart(${product.id})">Tambah ke Keranjang</button>
     `;
 
     productContainer.appendChild(productCard);
@@ -108,3 +158,4 @@ priceFilter.addEventListener("input", function () {
 
 // Initial Render
 renderProducts(products);
+updateCartCount();

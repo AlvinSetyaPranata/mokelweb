@@ -223,6 +223,68 @@ body {
   border-radius: 1rem; /* Rounded corners for the map */
 }
 
+/* Floating Cart Button */
+.floating-cart {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--bg-secondary);
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.floating-cart:hover {
+  transform: scale(1.1);
+  background-color: var(--primary);
+  color: #000;
+}
+
+.floating-cart #cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Notification Toast */
+.notification-toast {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  background-color: var(--primary);
+  color: #000;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.5s ease;
+  font-weight: bold;
+}
+
+.notification-toast.show {
+  opacity: 1;
+  transform: translateX(0);
+}
 
 /* Footer */
 footer {
